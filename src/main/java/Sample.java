@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -22,7 +23,6 @@ public class Sample {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         // post
         try {
             URL postUrl = new URL("https://gorest.co.in/public/v2/users");
@@ -30,9 +30,9 @@ public class Sample {
             postConnection.setRequestMethod("POST");
             postConnection.setRequestProperty("Content-Type", "application/json");
             postConnection.setRequestProperty("Accept", "application/json");
-            postConnection.setRequestProperty("Authorization", "Bearer 58762cdab4e248c10d165f6bbe89d18a444dff00267b6cfcec49acf9dceb94b7");
+            postConnection.setRequestProperty("Authorization", "Bearer e03b94f10591360f5cb6fdaa3051c7aca42bd10a94c8962a2c6f1ba8a589676c");
             postConnection.setDoOutput(true);
-            String jsonInput = "{\"name\": \"Sen. Anala Iyer\",\"email\": \"dsen_anala_iyer123@stroman-leannon.test\",\"gender\": \"female\",\"status\": \"active\"}";
+            String jsonInput = "{\"name\": \"Sen. Anala Iyer\",\"email\": \"sen.anala.iyer@example.com\",\"gender\": \"female\",\"status\": \"active\"}";
             try (OutputStream outputStream = postConnection.getOutputStream()) {
                 byte[] input = jsonInput.getBytes(StandardCharsets.UTF_8);
                 outputStream.write(input, 0, input.length);
@@ -43,15 +43,14 @@ public class Sample {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         //delete
         try {
-            URL deleteUrl = new URL("https://gorest.co.in/public/v2/users/6942295");
+            URL deleteUrl = new URL("https://gorest.co.in/public/v2/users/6942296");
             HttpURLConnection deleteConnection = (HttpURLConnection) deleteUrl.openConnection();
             deleteConnection.setRequestMethod("DELETE");
             deleteConnection.setRequestProperty("Content-Type", "application/json");
             deleteConnection.setRequestProperty("Accept", "application/json");
-            deleteConnection.setRequestProperty("Authorization", "Bearer 58762cdab4e248c10d165f6bbe89d18a444dff00267b6cfcec49acf9dceb94b7");
+            deleteConnection.setRequestProperty("Authorization", "Bearer e03b94f10591360f5cb6fdaa3051c7aca42bd10a94c8962a2c6f1ba8a589676c");
             System.out.println(deleteConnection.getResponseCode());
             System.out.println(readResponse(deleteConnection));
             deleteConnection.disconnect();
@@ -59,6 +58,26 @@ public class Sample {
             throw new RuntimeException(e);
         }
 
+        //put
+        try {
+            URL putUrl = new URL("https://gorest.co.in/public/v2/users/6942296");
+            HttpURLConnection putConnection = (HttpURLConnection) putUrl.openConnection();
+            putConnection.setRequestMethod("PUT");
+            putConnection.setRequestProperty("Content-Type", "application/json");
+            putConnection.setRequestProperty("Accept", "application/json");
+            putConnection.setRequestProperty("Authorization", "Bearer e03b94f10591360f5cb6fdaa3051c7aca42bd10a94c8962a2c6f1ba8a589676c");
+            putConnection.setDoOutput(true);
+            String jsonInput = "{\"name\": \"Oleg Tinkoff\",\"email\": \"olegtinkoff@example.com\",\"gender\": \"female\",\"status\": \"inactive\"}";
+            try (OutputStream outputStream = putConnection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes(StandardCharsets.UTF_8);
+                outputStream.write(input, 0, input.length);
+            }
+            System.out.println(putConnection.getResponseCode());
+            System.out.println(readResponse(putConnection));
+            putConnection.disconnect();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static String readResponse(HttpURLConnection connection) throws IOException {
