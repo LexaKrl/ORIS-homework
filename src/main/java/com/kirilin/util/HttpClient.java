@@ -1,4 +1,4 @@
-package task021124;
+package com.kirilin.util;
 import java.util.Map;
 
 public interface HttpClient {

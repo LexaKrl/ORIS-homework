@@ -1,6 +1,6 @@
 package com.kirilin;
 
-import task021124.HttpClientImpl;
+import com.kirilin.util.HttpClientImpl;
 
 import java.util.HashMap;
 import java.util.Map;

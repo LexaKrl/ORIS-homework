@@ -1,4 +1,4 @@
-package task021124;
+package com.kirilin.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
