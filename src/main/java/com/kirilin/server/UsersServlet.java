@@ -14,7 +14,7 @@ import java.io.IOException;
 public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", List.of(List.of(new UserDto("Ivan",56,"pow"))));
+        req.setAttribute("users", List.of(new UserDto("Ivan",56,"pow")));
         req.getRequestDispatcher("user.ftl").forward(req, resp);
     }
 }
