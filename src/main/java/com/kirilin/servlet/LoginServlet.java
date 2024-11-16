@@ -1,5 +1,7 @@
-package com.kirilin.server;
+package com.kirilin.servlet;
 
+import com.kirilin.dto.UserDto;
+import com.kirilin.service.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -23,7 +25,11 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String password = req.getParameter("password");
         String login = req.getParameter("login");
-        if ("login".equalsIgnoreCase(login) && "password".equals(password)) {
+
+        UserServiceImpl usi = new UserServiceImpl();
+        UserDto user = usi.getByLogin(login);
+
+        if (user != null && "password".equals(password)) {
             //session
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("user", login);

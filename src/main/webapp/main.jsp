@@ -16,7 +16,7 @@
     String user = null;
     String sessionUser = (String) session.getAttribute("user");
     if (sessionUser == null) {
-        response.sendRedirect("login.html");
+        response.sendRedirect("index.html");
     } else {
         user = sessionUser;
     }
@@ -37,7 +37,7 @@
     String user = null;
     String sessionUser = (String) session.getAttribute("user");
     if (sessionUser == null) {
-        response.sendRedirect("login.html");
+        response.sendRedirect("index.html");
     } else {
         user = sessionUser;
     }

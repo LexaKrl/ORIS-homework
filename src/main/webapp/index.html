@@ -2,11 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index page</title>
+    <title>Login page</title>
 </head>
 <body>
 
-Hello, Tomato!
+<h2>Login in account</h2>
+
+<form method="post" action="/login">
+
+    Login:
+    <label>
+        <input name="login" type="text">
+    </label>
+    <br>
+    Password:
+    <label>
+        <input name="password" type="password">
+    </label>
+    <br>
+    <input type="submit">
+
+</form>
+
+<a href="/register">Don't have an account?</a>
 
 </body>
 </html>
