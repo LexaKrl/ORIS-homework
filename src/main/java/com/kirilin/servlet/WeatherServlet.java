@@ -22,16 +22,7 @@ public class WeatherServlet extends HttpServlet {
         String city = req.getParameter("city");
 
         if (city != null && !city.isEmpty()) {
-            HttpClient client = new HttpClientImpl();
-
-            Map<String, String> headers = new HashMap<>();
-            Map<String, String> params = new HashMap<>();
-
-            headers.put("Content-type", "application/json");
-            params.put("q", city);
-            params.put("appid", "bd5e378503939ddaee76f12ad7a97608");
-
-            String weatherResponse = client.get("http://api.openweathermap.org/data/2.5//weather", headers, params);
+            String weatherResponse = getWeatherResponse(city);
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(weatherResponse);
@@ -41,5 +32,21 @@ public class WeatherServlet extends HttpServlet {
         }
 
         req.getRequestDispatcher("weather.jsp").forward(req, resp);
+    }
+
+    private static String getWeatherResponse(String city) {
+        HttpClient client = new HttpClientImpl();
+
+        Map<String, String> headers = new HashMap<>();
+        Map<String, String> params = new HashMap<>();
+
+        headers.put("Content-type", "application/json");
+        params.put("q", city);
+        params.put("appid", "bd5e378503939ddaee76f12ad7a97608");
+        params.put("units", "metric");
+
+
+        String weatherResponse = client.get("http://api.openweathermap.org/data/2.5//weather", headers, params);
+        return weatherResponse;
     }
 }

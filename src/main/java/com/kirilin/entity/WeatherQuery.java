@@ -13,4 +13,5 @@ import lombok.Setter;
 public class WeatherQuery {
     private Integer id;
     private String cityName;
+    private String username;
 }
