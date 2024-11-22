@@ -68,6 +68,8 @@
     <br>
     Cookie user: <%=cookieUser%>
 </h3>
+<br>
+<a href="/weather">weather in your city!</a>
 
 </body>
 </html>
