@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
             if (resultSet != null) {
                 while (resultSet.next()) {
                     return new User(
-                            resultSet.getInt("user_id"),
+                            resultSet.getInt("id"),
                             resultSet.getString("name"),
                             resultSet.getString("last_name"),
                             resultSet.getString("login"),
@@ -71,13 +71,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
         //language=sql
-        String sql = "insert into users (name, last_name, login, password) values (?, ?, ?, ?)";
+        String sql = "insert into users(name, last_name, login, password) values (?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getLogin());
             preparedStatement.setString(4, user.getPassword());
+
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

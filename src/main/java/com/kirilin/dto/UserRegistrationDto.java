@@ -1,5 +1,8 @@
 package com.kirilin.dto;
 
+import lombok.Getter;
+
+@Getter
 public class UserRegistrationDto {
     private String name;
     private String password;
@@ -11,17 +14,5 @@ public class UserRegistrationDto {
         this.lastname = lastname;
         this.login = login;
         this.password = password;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getLastname() {
-        return lastname;
-    }
-    public String getLogin() {
-        return login;
-    }
-    public String getPassword() {
-        return password;
     }
 }
