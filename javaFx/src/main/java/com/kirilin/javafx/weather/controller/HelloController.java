@@ -25,8 +25,8 @@ public class HelloController {
     @FXML
     void goToDialogScene(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chat.fxml"));
-            Scene scene = new Scene(loader.load(), 320, 240);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/kirilin/javafx/chat.fxml"));
+            Scene scene = new Scene(loader.load(), 1000, 600);
             Stage stage = (Stage) startBtn.getScene().getWindow();
             stage.setScene(scene);
             stage.show();

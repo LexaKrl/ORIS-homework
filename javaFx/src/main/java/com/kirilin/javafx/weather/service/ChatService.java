@@ -19,8 +19,17 @@ public class ChatService {
         params.put("appid", "bd5e378503939ddaee76f12ad7a97608");
         params.put("units", "metric");
 
+        String weatherResponse;
 
-        String weatherResponse = httpClient.get("http://api.openweathermap.org/data/2.5//weather", headers, params);
+        try {
+            String response = httpClient.get("http://api.openweathermap.org/data/2.5//weather", Map.of(), params);
+
+            JSONObject jsonObject = new JSONObject(response);
+
+            weatherResponse = String.valueOf(jsonObject.getJSONObject("main").getDouble("temp"));
+        } catch (Exception e) {
+            weatherResponse = "Такого города не существует";
+        }
         return weatherResponse;
     }
 

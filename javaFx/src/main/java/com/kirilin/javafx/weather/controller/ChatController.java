@@ -44,15 +44,15 @@ public class ChatController {
         if (command.equals("list")) {
             serverText.setText(
                     """
-                        1) list - выводит все команды
-                        2) q - выход из консоли
-                        3) weather [city] - выдает погоду из города
-                        4) exchange [rate] - выводит обменный курс валюты на рубль 
+                        1) list - выводит все команды\n
+                        2) q - выход из консоли\n
+                        3) weather [city] - выдает погоду из города\n
+                        4) exchange [rate] - выводит обменный курс валюты на рубль \n
                     """
             );
         } else if(command.equals("q")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-            Scene scene = new Scene(loader.load(), 320, 240);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/kirilin/javafx/hello-view.fxml"));
+            Scene scene = new Scene(loader.load(), 600, 400);
             Stage stage = (Stage) sendBtn.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
