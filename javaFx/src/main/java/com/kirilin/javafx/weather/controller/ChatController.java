@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 
 public class ChatController {
 
@@ -64,7 +65,13 @@ public class ChatController {
 
     @FXML
     void initialize() {
-        userText.setOnAction(this::sendMessage);
+        userText.setOnAction(event -> {
+            try {
+                sendMessage(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 }
